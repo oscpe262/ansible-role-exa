@@ -1,0 +1,6 @@
+## roles/ansible-role-exa/vars/Arch_Linux.yml
+# vim:ft=ansible:
+---
+exa_git: False
+exa_pkg: False
+...

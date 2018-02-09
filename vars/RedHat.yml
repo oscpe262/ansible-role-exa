@@ -1,0 +1,6 @@
+## roles/ansible-role-exa/tasks/RedHat.yml
+# vim:ft=ansible:
+---
+exa_git: True
+exa_pkg: False
+...

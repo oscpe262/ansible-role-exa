@@ -1,0 +1,67 @@
+## roles/ansible-role-exa/tasks/main.yml
+# vim:ft=ansible:
+---
+- inclue_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}.yml"
+    - "main.yml"
+
+- name: Install git package
+  package:
+    name: git
+    state: present
+  when: exa_git
+
+- name: Install exa package
+  package:
+    name: '{{ exa_pkg }}'
+    state: present
+  when: exa_pkg
+
+- name: Install exa-git (Arch Linux)
+  yaourt:
+    name: exa-git
+    state: present
+  become: yes
+  become_user: '{{ as_user }}'
+  when: "'Arch' in ansible_distribution"
+
+- name: Install libhttp-parser (debian-based distros)
+  package:
+    name: libhttp-parser2.1
+    state: present
+  when: "'Debian' in ansible_os_family"
+
+- name: Check if exa is installed
+  stat:
+    path: /usr/local/bin/exa
+  register: exa_installed
+  ignore_errors: yes
+
+- name: Install exa dependencies on RedHat family OSs
+  package:
+    name: '{{ item }}'
+    state: present
+  when: not exa_installed.stat.exists
+  with_items:
+    - rust
+    - libgit2
+    - cmake
+    - cargo
+    - zlib
+    - zlib-devel
+    - zlib-static
+
+- name: Clone exa repo
+  git:
+    repo: 'https://github.com/ogham/exa.git'
+    dest: /tmp/exa
+    clone: yes
+  when: not exa_installed.stat.exists
+
+- name: Make exa install
+  make:
+    chdir: /tmp/exa
+    target: install
+  when: not exa_installed.stat.exists
+...
