@@ -1,7 +1,7 @@
 ## roles/ansible-role-exa/tasks/main.yml
 # vim:ft=ansible:
 ---
-- inclue_vars: "{{ item }}"
+- include_vars: '{{ item }}'
   with_first_found:
     - "{{ ansible_distribution }}.yml"
     - "main.yml"
@@ -16,7 +16,7 @@
   package:
     name: '{{ exa_pkg }}'
     state: present
-  when: exa_pkg
+  when: ! exa_pkg == 'False'
 
 - name: Install exa-git (Arch Linux)
   yaourt:
