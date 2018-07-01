@@ -1,5 +1,5 @@
 ## roles/ansible-role-exa/vars/Arch_Linux.yml
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:
 ---
 exa_git: False
 exa_pkg: False

@@ -1,4 +1,4 @@
 ## roles/ansible-role-exa/defaults/main.yml
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:
 ---
 ...

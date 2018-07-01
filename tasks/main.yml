@@ -1,5 +1,5 @@
 ## roles/ansible-role-exa/tasks/main.yml
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:
 ---
 - include_vars: '{{ item }}'
   with_first_found:

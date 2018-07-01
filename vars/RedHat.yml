@@ -1,5 +1,5 @@
 ## roles/ansible-role-exa/tasks/RedHat.yml
-# vim:ft=ansible:
+# vim:ft=yaml.ansible:
 ---
 exa_git: True
 exa_pkg: False
