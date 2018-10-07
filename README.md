@@ -3,6 +3,7 @@
 An Ansible role for installing exa, from repo or build from git, whichever necessary.
 
 ## Requirements
+Currently only tested on Fedora
 
 ## Role Variables
 | Variable		| Default		| Comments (type) |
